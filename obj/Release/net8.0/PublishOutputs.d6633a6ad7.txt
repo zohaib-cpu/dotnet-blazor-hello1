@@ -1,0 +1,4 @@
+C:\Users\This PC\Desktop\dotnet-blazor-hello\DotnetBlazorHello\bin\Release\net8.0\publish\publish\web.config
+C:\Users\This PC\Desktop\dotnet-blazor-hello\DotnetBlazorHello\bin\Release\net8.0\publish\publish\wwwroot\sample-data\weather.json
+C:\Users\This PC\Desktop\dotnet-blazor-hello\DotnetBlazorHello\bin\Release\net8.0\publish\publish\wwwroot\_framework\blazor.boot.json
+C:\Users\This PC\Desktop\dotnet-blazor-hello\DotnetBlazorHello\bin\Release\net8.0\publish\web.config
