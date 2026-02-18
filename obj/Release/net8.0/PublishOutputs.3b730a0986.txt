@@ -1,0 +1,1 @@
+C:\Users\This PC\Desktop\dotnet-blazor-hello\DotnetBlazorHello\publish\web.config
