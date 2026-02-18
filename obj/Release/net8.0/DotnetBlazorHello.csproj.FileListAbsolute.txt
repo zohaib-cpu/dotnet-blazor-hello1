@@ -1033,3 +1033,4 @@ C:\Users\This PC\Desktop\dotnet-blazor-hello\DotnetBlazorHello\bin\Release\net8.
 C:\Users\This PC\Desktop\dotnet-blazor-hello\DotnetBlazorHello\bin\Release\net8.0\publish\wwwroot\sample-data\weather.json
 C:\Users\This PC\Desktop\dotnet-blazor-hello\DotnetBlazorHello\bin\Release\net8.0\publish\wwwroot\_framework\blazor.boot.json
 C:\Users\This PC\Desktop\dotnet-blazor-hello\DotnetBlazorHello\obj\Release\net8.0\DotnetBlazorHello.sourcelink.json
+C:\Users\This PC\Desktop\dotnet-blazor-hello\DotnetBlazorHello\bin\Release\net8.0\_framework\blazor.boot.json

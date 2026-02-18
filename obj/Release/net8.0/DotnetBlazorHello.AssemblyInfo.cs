@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DotnetBlazorHello")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f78fe7444acadcdc947db36532644b42ca7c209")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ad1003687aeb211af72797b128d0c047d20af3de")]
 [assembly: System.Reflection.AssemblyProductAttribute("DotnetBlazorHello")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DotnetBlazorHello")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
