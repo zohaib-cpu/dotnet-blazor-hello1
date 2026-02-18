@@ -9,22 +9,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout repository code
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # Step 2: Setup .NET SDK
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
+      # Step 3: Restore project dependencies
       - name: Restore Dependencies
         run: dotnet restore
 
+      # Step 4: Build & publish the Blazor WebAssembly app
       - name: Build & Publish
         run: dotnet publish -c Release -o publish
 
+      # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_PAT }}   # <--- PAT use karna
+          github_token: ${{ secrets.GH_PAT1 }}   # <-- yahan tumhara PAT secret ka name
           publish_dir: ./publish/wwwroot
