@@ -4,14 +4,13 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-
     - name: Checkout Code
       uses: actions/checkout@v3
 
@@ -23,39 +22,16 @@ jobs:
     - name: Publish Project
       run: dotnet publish DotnetBlazorHello.csproj -c Release -o publish
 
-    - name: List Publish Folder
-      run: ls -lR publish
-
-    - name: Clean EC2 /var/www/html
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          sudo rm -rf /var/www/html/*
-
-    - name: Copy Files to EC2
+    - name: Copy Publish Files to EC2
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
-        source: "publish/*"
+        source: "publish/wwwroot/**"
         target: "/var/www/html"
 
-    - name: Remove default Nginx index
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          if [ -f /var/www/html/index.nginx-debian.html ]; then
-              sudo rm /var/www/html/index.nginx-debian.html
-          fi
-
-    - name: Fix Permissions
+    - name: Fix Permissions & Reload Nginx
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
@@ -65,13 +41,5 @@ jobs:
           sudo chown -R www-data:www-data /var/www/html
           sudo find /var/www/html -type d -exec chmod 755 {} \;
           sudo find /var/www/html -type f -exec chmod 644 {} \;
-
-    - name: Reload Nginx
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
           sudo nginx -t
           sudo systemctl reload nginx
