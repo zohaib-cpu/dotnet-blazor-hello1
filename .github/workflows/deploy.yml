@@ -15,34 +15,34 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-    
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
 
-    
       - name: Publish Project
         run: dotnet publish DotnetBlazorHello.csproj -c Release -o publish
 
-     
-      - name: Copy Publish Files to EC2
+      
+      - name: Copy Publish Files to EC2 Temp
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "publish/**"          
-          target: "/var/www/html"
+          source: "publish/**"
+          target: "/home/ubuntu/publish_temp"
 
-    
-      - name: Fix Permissions & Reload Nginx
+     
+      - name: Move to /var/www/html & Reload Nginx
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            sudo rm -rf /var/www/html/*
+            sudo mv /home/ubuntu/publish_temp/* /var/www/html/
             sudo chown -R www-data:www-data /var/www/html
             sudo find /var/www/html -type d -exec chmod 755 {} \;
             sudo find /var/www/html -type f -exec chmod 644 {} \;
